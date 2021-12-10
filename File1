@@ -1,0 +1,26 @@
+mkdir certs 
+openssl req -newkey rs:4096 -nodes -sha256 -keyout certs/omain.key -x509 -days 365 -out cets/domain.crt
+ls
+cd certs/
+ls 
+cd /etc/docker
+ls
+mkdir certs.d
+cd certs.d/
+mkdir repo.docker.local:5000
+cd
+cd certs/
+cp domain.crt /etc/docker/certs.d/repo.docker.local\:5000/ca.crt
+cd
+systemctl restart docker
+-----------------------------------------------------------------------------------------
+Secure Registry Creation in Docker:
+# docker container run -itd -p 5000:5000 --name secure_registry -v $(pwd)/certs:/certs -e REGISTRY_HTTP_TLS_CERTIFICATE=/cert/domain.crt -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key registry
+#docker container ls
+#docker image ls
+#ifconfig
+#vim /etc/hosts
+#docker image ls
+#docker image tag registry repo.docker.local:5000/registry
+#docker image ls
+#docker image push repo.docker.local:5000/registry
