@@ -32,3 +32,21 @@ volumes:
   db_data: {}
   wordpress_data: {}
   
+  ===========================================================Simple First Composer Code======================================================================
+  version: '3.8'
+  services:
+          webapp1:
+               image: ngnix
+               ports:
+                 - "7000:80"
+               
+          webapp2:
+               image: jenkins
+               ports:
+                 - "8000:80"
+               
+          webapp3:
+               image:apache2
+               ports:
+                 - "9000:80"
+  
