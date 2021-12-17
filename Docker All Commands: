@@ -1,0 +1,22 @@
+sudo apt-get install     ca-certificates     curl     gnupg     lsb-release
+   12  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+   13  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+   14    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   15  sudo apt-get update
+   16  sudo apt-get install docker-ce docker-ce-cli containerd.io
+   17  apt-cache madison docker-ce
+   18  sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
+   19  sudo docker run hello-world
+   20  docker -version
+   21  docker --version
+   22  docker info
+   23  clear
+   24  sudo systemctl start docker
+   25  sudo systemctl enable docker
+   26  sudo systemctl status docker
+   27  docker --help
+docker run -it --name Webserver -p 3500:80 ubuntu /bin/bash/
+docker run -it --name Webserver -p 3500:80 ubuntu /bin/bash/
+docker start foo
+docker container inspect e17
+docker container  run -it --name DBMachine -e MYSQL_ALLOW_EMPTY_PASSWORD=true mysql
