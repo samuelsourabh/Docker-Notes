@@ -1,6 +1,7 @@
 Link: For Wordpress Server and DB Server:      https://docs.docker.com/search/?q=wordpress
 Create a docker-compose.yml file that starts your WordPress blog and a separate MySQL instance with volume mounts for data persistence:
 
+sudo nano docker-compose.yml
 version: "3.9"  
 services:
   db:
@@ -33,6 +34,7 @@ volumes:
   wordpress_data: {}
   
   ===========================================================Simple First Composer Code======================================================================
+  sudo nano docker-compose.yml 
   version: '3.8'
   services:
           webapp1:
