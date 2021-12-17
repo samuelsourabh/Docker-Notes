@@ -1,0 +1,48 @@
+FROM ubuntu:20.04
+ARG DEBIAN_FRONTEND=noninteractive
+#PHP
+RUN apt update && apt-get install -y \
+	php7.4 \
+	php7.4-bz2 \
+	php7.4-cgi \
+	php7.4-cli \
+	php7.4-common \
+	php7.4-curl \
+	php7.4-dev \
+	php7.4-enchant \
+	php7.4-fpm \
+	php7.4-gd \
+	php7.4-gmp \
+	php7.4-imap \
+	php7.4-interbase \
+	php7.4-intl \
+	php7.4-json \
+	php7.4-ldap \
+	php7.4-mbstring \
+	php7.4-mysql \
+	php7.4-odbc \
+	php7.4-opcache \
+	php7.4-pgsql \
+	php7.4-phpdbg \
+	php7.4-pspell \
+	php7.4-readline \
+	php7.4-snmp \
+	php7.4-sqlite3 \
+	php7.4-sybase \
+	php7.4-tidy \
+	php7.4-xmlrpc \
+	php7.4-xsl \
+	php7.4-zip
+#Apache
+RUN apt-get install apache2 libapache2-mod-php7.4 -y
+RUN a2enmod rewrite
+#Mysql
+RUN apt install mysql-server-8.0 -y
+#Composer
+Run php -r "readfile('https://getcomposer.org/installer');" | php && cp composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
+#Nodejs & Yarn and various packages
+RUN apt-get update && apt-get install nodejs -y && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && apt update && apt install yarn && apt install nano && apt install net-tools
+#Script
+COPY 000-default.conf /etc/apache2/sites-available/
+COPY create-db-docker.sh /usr/local/bin/
+RUN ln -s usr/local/bin/create-db-docker.sh /root/create-db-docker.sh && echo "sh usr/local/bin/create-db-docker.sh" >> /root/.bashrc
