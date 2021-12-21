@@ -1,3 +1,17 @@
+FROM centos:latest
+MAINTAINER  samuel.sourabh@rubicotech.in 
+#LABEL "samuel.sourabh@rubicotech.in"
+RUN  yum update -y && yum install -y httpd && yum install -y zip && yum install unzip
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page267/yooga.zip  /var/www/html/
+WORKDIR /var/www/html
+RUN unzip yooga.zip
+RUN cp -rvf free-yoga-website-template/* .
+RUN rm -rf yooga.zip 
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"] 
+EXPOSE 80
+
+
+*****************************************************************************************************************************************************************
 FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 #PHP
