@@ -49,6 +49,7 @@ $cd ~
 $mkdir certs
 $sudo openssl req \
   -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key \
+  -addext "subjectAltName = DNS:rubico.tech.com" \
   -x509 -days 365 -out certs/domain.crt
 # Common Name: our.company.registry
 # download domain.crt file if you want other server to access it
